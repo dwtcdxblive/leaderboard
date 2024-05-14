@@ -40,6 +40,7 @@ const PublicPage = () => {
             <h2 className='activation-title'>HIT FOR SIX</h2>
           </div>
         </nav> */}
+        
         <div className='content d-flex align-items-start h-100 w-100'>
           <div className='container cont-ui-spacing'>
             <div className='row justify-content-center'>
