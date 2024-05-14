@@ -24,7 +24,7 @@ const TestimonialSubmission = () => {
 
     // Send a POST request to submit the testimonial
     axios
-      .post('http://localhost:5000/api/testimonials', testimonialData)
+      .post('http://localhost:5001/api/testimonials', testimonialData)
       .then((response) => {
         // Handle successful submission
         setSuccessMessage('Score submitted successfully.');

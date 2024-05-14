@@ -7,7 +7,7 @@ const AdminPage = () => {
   // Function to fetch data and update state
   const fetchPendingTestimonials = () => {
     axios
-      .get('http://localhost:5000/api/testimonials/pending')
+      .get('http://localhost:5001/api/testimonials/pending')
       .then((response) => {
         setPendingTestimonials(response.data);
       })
@@ -32,7 +32,7 @@ const AdminPage = () => {
   const handleApproval = (testimonialId) => {
     // Send a PUT request to `/api/testimonials/:id` with the 'approve' action
     axios
-      .put(`http://localhost:5000/api/testimonials/${testimonialId}`, {
+      .put(`http://localhost:5001/api/testimonials/${testimonialId}`, {
         action: 'approve',
       })
       .then((response) => {
@@ -50,7 +50,7 @@ const AdminPage = () => {
   const handleRejection = (testimonialId) => {
     // Send a PUT request to `/api/testimonials/:id` with the 'reject' action
     axios
-      .put(`http://localhost:5000/api/testimonials/${testimonialId}`, {
+      .put(`http://localhost:5001/api/testimonials/${testimonialId}`, {
         action: 'reject',
       })
       .then((response) => {
