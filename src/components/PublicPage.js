@@ -1,28 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import bg from '../assets/background.mp4';
-import Logo from '../assets/GITEX-AFRICA (1).png'
+import Logo from '../assets/GITEX-AFRICA (1).png';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 const PublicPage = () => {
   const [approvedTestimonials, setApprovedTestimonials] = useState([]);
+  const [firstTestimonial, setFirstTestimonial] = useState(null);
 
   // Function to fetch data and update state
-const fetchApprovedTestimonials = () => {
-  axios
-    .get('http://localhost:5000/api/testimonials/pending')
-    .then((response) => {
-      // Convert content to numbers and sort in descending order
-      const sortedData = response.data.sort(
-        (a, b) => parseFloat(b.content) - parseFloat(a.content)
-      );
-      const limitedData = sortedData.slice(0, 8);
-      setApprovedTestimonials(limitedData);
-    })
-    .catch((error) => {
-      console.error('Error fetching approved testimonials:', error);
-    });
-};
+  const fetchApprovedTestimonials = () => {
+    axios
+      .get('http://localhost:5000/api/testimonials/pending')
+      .then((response) => {
+        // Convert content to numbers and sort in descending order
+        const sortedData = response.data.sort(
+          (a, b) => parseFloat(b.content) - parseFloat(a.content)
+        );
+        const limitedData = sortedData.slice(0, 10);
+        setApprovedTestimonials(limitedData);
 
+        // Set the first testimonial separately
+        if (limitedData.length > 0) {
+          setFirstTestimonial(limitedData[0]);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching approved testimonials:', error);
+      });
+  };
 
   useEffect(() => {
     fetchApprovedTestimonials();
@@ -33,27 +38,29 @@ const fetchApprovedTestimonials = () => {
   return (
     <div>
       <div className='video-background'>
-        <nav class='navbar'>
-          <div class='container'>
-            <a class='navbar-brand m-0' href='#'>
-              <img src={Logo} className='logo-size' alt='Bootstrap' />
-            </a>
-            <h2 className='activation-title'>HIT FOR SIX</h2>
-          </div>
-        </nav>
         <div className='content d-flex align-items-start h-100 w-100'>
-          <div className='container'>
+          <div className='container cont-ui-spacing'>
             <div className='row justify-content-center'>
-              {approvedTestimonials.map((testimonial) => (
+              {firstTestimonial && (
+                <div className='col-md-12 d-flex justify-content-center score-spacing'>
+                  <div className='w-100'>
+                    <div className='border-0 text-center d-flex justify-content-between'>
+                      <h4></h4>
+                      <h4 className='first-name-style'>{firstTestimonial.author}</h4>
+                      <h5 className='first-score-style'>{firstTestimonial.content}</h5>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {approvedTestimonials.slice(1).map((testimonial) => (
                 <div
-                  className='col-md-12 d-flex justify-content-center'
+                  className='col-md-12 d-flex justify-content-center score-spacing'
                   key={testimonial._id}
                 >
-                  <div className='card mt-4 w-100'>
-                    <div className='card-header header-bg border-0 text-center'>
-                      <h4 className=''>{testimonial.author}</h4>
-                    </div>
-                    <div className='card-text m-2 text-center'>
+                  <div className='w-100'>
+                    <div className='border-0 text-center d-flex justify-content-between'>
+                      <h4></h4>
+                      <h4>{testimonial.author}</h4>
                       <h5>{testimonial.content}</h5>
                     </div>
                   </div>

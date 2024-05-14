@@ -13,7 +13,8 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-background-color: #E0E7D9;}
+background-image: url('./assets/ui.png');
+}
 
 .video-background video {
   position: absolute;
@@ -41,8 +42,10 @@ background-color: #E0E7D9;}
 }
 .image-background{
 background-color: #E0E7D9;
+background-image: url('./assets/ui.png');
 background-repeat:no-repeat;
 width: 100%;
+background-size: contain;
 }
 .min-h{
   min-height: 6.5rem;
@@ -74,4 +77,30 @@ input[type=number] {
 
 .navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl{
   justify-content: space-around !important;
+}
+
+h4 , h5{
+  font-size: 4rem !important;
+  text-transform: lowercase;
+}
+
+.cont-ui-spacing{
+  margin-top: 23.4rem;
+  margin-left: 3rem !important;
+}
+.score-spacing{
+  margin-bottom: 4.7rem;
+}
+.first-score-style{
+  position: absolute;
+  top: 15.5%;
+  left: 43%;
+  color: #FFDD4F;
+}
+.first-name-style{
+  position: absolute;
+  top: 18.5%;
+  left: 37%;
+  color: #FFDD4F;
+
 }
